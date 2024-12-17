@@ -39,6 +39,7 @@ $products = $productsCollection->find(); // Récupération des produits
             <td><?php echo htmlspecialchars($product['name']); ?></td>
             <td><?php echo htmlspecialchars($product['description']); ?></td>
             <td><?php echo htmlspecialchars($product['price']); ?> €</td>
+            <td><img src="/image/<?php echo htmlspecialchars($product['image']); ?>" alt=""></td>
         </tr>
         <?php endforeach; ?>
     </table>
