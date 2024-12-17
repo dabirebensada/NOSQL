@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require 'db_connect.php'; // Connexion à MongoDB
+require 'db_connect.php'; 
 
 // Vérification de la session et des droits d'administrateur
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
@@ -8,9 +8,9 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-$db = getMongoDBConnection(); // Connexion à MongoDB
-$productsCollection = $db->products; // Sélection de la collection des produits
-$products = $productsCollection->find(); // Récupération des produits
+$db = getMongoDBConnection(); 
+$productsCollection = $db->products;
+$products = $productsCollection->find(); 
 
 ?>
 
@@ -19,14 +19,14 @@ $products = $productsCollection->find(); // Récupération des produits
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Armurerie</title>
+    <title>Admin - AMUNATION</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Bienvenue dans l'espace admin</h1>
+    <h1>Bienvenue dans l'espace admin de l'AMUNATION</h1>
     <p>Connecté en tant que <?php echo htmlspecialchars($_SESSION['username']); ?></p>
 
-    <!-- Liste des produits -->
+
     <h2>Produits</h2>
     <table>
         <tr>

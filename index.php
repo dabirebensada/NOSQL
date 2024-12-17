@@ -19,14 +19,14 @@ $products = $productsCollection->find(); // Récupération des produits
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Armurerie</title>
+    <title>Accueil - AMUNATION</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Bienvenue dans l'armurerie</h1>
+    <h1>Bienvenue dans l'AMUNATION</h1>
     <p>Connecté en tant que <?php echo htmlspecialchars($_SESSION['username']); ?></p>
 
-    <!-- Liste des produits -->
+
     <h2>Produits</h2>
     <table>
         <tr>
