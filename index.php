@@ -33,13 +33,22 @@ $products = $productsCollection->find(); // Récupération des produits
             <th>Nom</th>
             <th>Description</th>
             <th>Prix</th>
+            <th>Stock</th>
+            <th>Image</th>
         </tr>
         <?php foreach ($products as $product): ?>
         <tr>
             <td><?php echo htmlspecialchars($product['name']); ?></td>
             <td><?php echo htmlspecialchars($product['description']); ?></td>
             <td><?php echo htmlspecialchars($product['price']); ?> €</td>
-            <td><img src="/image/<?php echo htmlspecialchars($product['image']); ?>" alt=""></td>
+            <td><?php echo htmlspecialchars($product['stock'] ?? 'Non spécifié'); ?></td>
+            <td>
+                <?php if (!empty($product['image'])): ?>
+                    <img src="/image/<?php echo htmlspecialchars($product['image']); ?>" alt="Image de <?php echo htmlspecialchars($product['name']); ?>" width="100">
+                <?php else: ?>
+                    Pas d'image
+                <?php endif; ?>
+            </td>
         </tr>
         <?php endforeach; ?>
     </table>
