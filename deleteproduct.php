@@ -1,18 +1,22 @@
-<?php
+<<?php
 require 'db_connect.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $id = $_POST["id"];
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
+    $id = $_POST['id'];
 
-    // Connexion à MongoDB
-    $db = getMongoDBConnection();
-    $productsCollection = $db->products;
+    try {
+        $db = getMongoDBConnection();
+        $productsCollection = $db->products;
 
-    // Suppression du produit
-    $productsCollection->deleteOne(["_id" => new MongoDB\BSON\ObjectId($id)]);
+        $deleteResult = $productsCollection->deleteOne(["_id" => new MongoDB\BSON\ObjectId($id)]);
 
-    // Redirection vers la page admin
-    header("Location: ../views/admin.php");
-    exit();
+        if ($deleteResult->getDeletedCount() === 1) {
+            header("Location: admin.php?status=deleted");
+        } else {
+            echo "Erreur lors de la suppression.";
+        }
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+    }
 }
 ?>

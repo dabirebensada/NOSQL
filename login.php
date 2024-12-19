@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="login-container">
+    <div class="login-container"
+        <h1> AMUNATION </h1>
         <h1>AMUNATION</h1>
         <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid_credentials'): ?>
             <p style="color: red;">Nom d'utilisateur ou mot de passe incorrect.</p>

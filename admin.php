@@ -1,4 +1,4 @@
-<?php 
+<?php  
 session_start();
 require 'db_connect.php'; 
 
@@ -26,7 +26,7 @@ $products = $productsCollection->find();
     <h1>Bienvenue dans l'espace admin de l'AMUNATION</h1>
     <p>Connecté en tant que <?php echo htmlspecialchars($_SESSION['username']); ?></p>
 
-
+    
     <h2>Produits</h2>
     <table>
         <tr>
@@ -48,7 +48,11 @@ $products = $productsCollection->find();
             <td><?php echo htmlspecialchars($product['created_at']->toDateTime()->format('Y-m-d H:i:s')); ?></td>
             <td>
                 <a href="updateproduct.php?id=<?php echo $product['_id']; ?>">Modifier</a>
-                <a href="deleteproduct.php?id=<?php echo $product['_id']; ?>">Supprimer</a>
+                <!-- Formulaire de suppression -->
+                <form action="deleteproduct.php" method="POST" style="display:inline;">
+                    <input type="hidden" name="id" value="<?php echo $product['_id']; ?>">
+                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">Supprimer</button>
+                </form>
             </td>
         </tr>
         <?php endforeach; ?>
