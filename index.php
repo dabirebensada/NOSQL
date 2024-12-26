@@ -1,58 +1,101 @@
 <?php
 session_start();
-require 'db_connect.php'; // Connexion à MongoDB
+require 'db_connect.php';
 
-// Vérification de la session
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
+// Connexion à MongoDB
+$db = getMongoDBConnection();
+$productsCollection = $db->products;
 
-$db = getMongoDBConnection(); // Connexion à MongoDB
-$productsCollection = $db->products; // Sélection de la collection des produits
-$products = $productsCollection->find(); // Récupération des produits
+// Récupération des produits
+$products = $productsCollection->find();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - AMUNATION</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Catalogue de produits</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Bienvenue dans l'AMUNATION</h1>
-    <p>Connecté en tant que <?php echo htmlspecialchars($_SESSION['username']); ?></p>
+    <header>
+        <h1>Bienvenue sur notre boutique en ligne</h1>
+        <nav>
+            <a href="cart.php">Mon panier</a>
+            <a href="logout.php">Déconnexion</a>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Nos produits</h2>
+        <div class="product-list">
+            <?php foreach ($products as $product): ?>
+                <div class="product-item">
+                    <!-- Vérification et affichage de l'image -->
+                    <?php if (!empty($product['image'])): ?>
+                        <img 
+                            src="image/<?= htmlspecialchars($product['image']) ?>" 
+                            alt="<?= htmlspecialchars($product['name']) ?>" 
+                            class="product-image"
+                            width="200" 
+                            height="200"
+                        >
+                    <?php else: ?>
+                        <img 
+                            src="image/default-image.jpg" 
+                            alt="Image non disponible" 
+                            class="product-image"
+                            width="200" 
+                            height="200"
+                        >
+                    <?php endif; ?>
+                    
+                    <h3><?= htmlspecialchars($product['name']) ?></h3>
+                    <p><?= htmlspecialchars($product['description']) ?></p>
+                    <p>Prix : <?= htmlspecialchars($product['price']) ?> €</p>
+                    <p id="stock-<?= (string)$product['_id'] ?>">Stock : <?= htmlspecialchars($product['stock']) ?></p>
+                    <button 
+                        class="add-to-cart" 
+                        data-id="<?= (string)$product['_id'] ?>"
+                        <?= $product['stock'] < 1 ? 'disabled' : '' ?>>
+                        Ajouter au panier
+                    </button>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </main>
 
+    <footer>
+        <p>&copy; 2024 Boutique en ligne. Tous droits réservés.</p>
+    </footer>
 
-    <h2>Produits</h2>
-    <table>
-        <tr>
-            <th>Nom</th>
-            <th>Description</th>
-            <th>Prix</th>
-            <th>Stock</th>
-            <th>Image</th>
-        </tr>
-        <?php foreach ($products as $product): ?>
-        <tr>
-            <td><?php echo htmlspecialchars($product['name']); ?></td>
-            <td><?php echo htmlspecialchars($product['description']); ?></td>
-            <td><?php echo htmlspecialchars($product['price']); ?> €</td>
-            <td><?php echo htmlspecialchars($product['stock'] ?? 'Non spécifié'); ?></td>
-            <td>
-                <?php if (!empty($product['image'])): ?>
-                    <img src="/image/<?php echo htmlspecialchars($product['image']); ?>" alt="Image de <?php echo htmlspecialchars($product['name']); ?>" width="100">
-                <?php else: ?>
-                    Pas d'image
-                <?php endif; ?>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+    <script>
+        $(document).ready(function() {
+            // Gestion de l'ajout au panier
+            $(".add-to-cart").on("click", function() {
+                const productId = $(this).data("id");
 
-    <a href="logout.php">Déconnexion</a>
+                $.ajax({
+                    url: "add_to_cart.php",
+                    type: "POST",
+                    data: { product_id: productId },
+                    success: function(response) {
+                        const data = JSON.parse(response);
+                        if (data.success) {
+                            $(`#stock-${productId}`).text("Stock : " + data.new_stock);
+                            alert("Produit ajouté au panier avec succès !");
+                        } else {
+                            alert("Erreur : " + data.message);
+                        }
+                    },
+                    error: function() {
+                        alert("Une erreur s'est produite lors de l'ajout au panier.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

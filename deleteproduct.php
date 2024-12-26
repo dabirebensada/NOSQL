@@ -1,7 +1,7 @@
-<<?php
+<?php
 require 'db_connect.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['id'])) {
     $id = $_POST['id'];
 
     try {
@@ -13,10 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
         if ($deleteResult->getDeletedCount() === 1) {
             header("Location: admin.php?status=deleted");
         } else {
-            echo "Erreur lors de la suppression.";
+            echo "Erreur : Produit introuvable ou déjà supprimé.";
         }
     } catch (Exception $e) {
         echo "Erreur : " . $e->getMessage();
     }
+} else {
+    echo "Erreur : Paramètre ID manquant ou invalide.";
 }
 ?>

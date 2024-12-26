@@ -1,13 +1,19 @@
-<?php 
+<?php
 require 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name = $_POST["name"];
-    $description = $_POST["description"];
-    $price = floatval($_POST["price"]);
-    $stock = intval($_POST["stock"]);
-    $image = $_POST["image"];
-    $created_at = new MongoDB\BSON\UTCDateTime(); // Date actuelle au format BSON
+    $name = trim($_POST["name"]);
+    $description = trim($_POST["description"]);
+    $price = isset($_POST["price"]) ? floatval($_POST["price"]) : 0;
+    $stock = isset($_POST["stock"]) ? intval($_POST["stock"]) : 0;
+    $image = trim($_POST["image"]);
+
+    if (empty($name) || empty($description) || $price <= 0 || $stock < 0) {
+        echo "Erreur : Veuillez remplir tous les champs correctement.";
+        exit();
+    }
+
+    $created_at = new MongoDB\BSON\UTCDateTime();
 
     // Connexion à la base MongoDB
     $db = getMongoDBConnection();
