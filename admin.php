@@ -20,7 +20,7 @@ $products = $productsCollection->find();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - AMMU-NATION</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styleadmin.css">
 </head>
 <body>
     <h1>Bienvenue dans l'espace admin de l'AMMU-NATION</h1>
@@ -47,12 +47,14 @@ $products = $productsCollection->find();
             <td><?php echo htmlspecialchars($product['image']); ?></td>
             <td><?php echo htmlspecialchars($product['created_at']->toDateTime()->format('Y-m-d H:i:s')); ?></td>
             <td>
-                <a href="updateproduct.php?id=<?php echo $product['_id']; ?>">Modifier</a>
-                <!-- Formulaire de suppression -->
-                <form action="deleteproduct.php" method="POST" style="display:inline;">
-                    <input type="hidden" name="id" value="<?php echo $product['_id']; ?>">
-                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">Supprimer</button>
-                </form>
+                <a href="updateproduct.php?id=<?php echo $product['_id']; ?>" class="modify-button">
+                    <button>Modifier</button>
+                </a>
+            <!-- Formulaire de suppression -->
+            <form action="deleteproduct.php" method="POST" style="display:inline;">
+                <input type="hidden" name="id" value="<?php echo $product['_id']; ?>">
+                <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">Supprimer</button>
+            </form>
             </td>
         </tr>
         <?php endforeach; ?>

@@ -1,0 +1,99 @@
+/* Style général de la page */ 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('image/vicecity.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #121212;
+}
+
+/* En-tête de la page */
+h1 {
+    text-align: center;
+    color: #efeaea;
+    margin-top: 50px;
+}
+
+/* Formulaire */
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(48, 46, 46, 0.8); /* Fond légèrement transparent */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Champs de saisie - transparents avec bordure visible */
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Bordure légère pour être visible */
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5); /* Fond transparent avec une légère couleur blanche */
+    color: #333; /* Texte visible */
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Bouton de soumission */
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Lien de retour à l'espace admin */
+a {
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #fe0606;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}

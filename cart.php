@@ -24,7 +24,7 @@ $totalPrice = 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panier - AMUNATION</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylecart.css">
 </head>
 <body>
     <h1>Mon Panier</h1>

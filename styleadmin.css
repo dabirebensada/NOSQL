@@ -1,0 +1,167 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('image/michael.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #121212;
+}
+
+/* Header */
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    color: rgb(9, 9, 9);
+    margin-top: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #0b0b0b;
+}
+
+/* Table styling for product listing */
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+}
+
+td {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Styling for the action buttons (Modifier & Supprimer) */
+td button, td form {
+    margin: 0;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+td form {
+    display: inline-block;
+    margin-right: 10px; /* Space between buttons */
+}
+
+button[type="submit"] {
+    background-color: #dc3545;
+    color: white;
+    font-size: 1rem;
+}
+
+button[type="submit"]:hover {
+    background-color: #c82333;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Formulaire pour ajouter un produit */
+form {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    width: 40%;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: block;
+    color: white;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+a {
+    display: block;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #dc3545;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Logout link */
+a.logout {
+    margin-top: 40px;
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #dc3545;
+}
+
+a.logout:hover {
+    text-decoration: underline;
+}

@@ -2,26 +2,34 @@
 session_start();
 require 'db_connect.php';
 
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Récupérer le nom de l'utilisateur connecté
+$username = htmlspecialchars($_SESSION['username']);
+
 // Connexion à MongoDB
 $db = getMongoDBConnection();
 $productsCollection = $db->products;
 
 // Récupération des produits
 $products = $productsCollection->find();
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogue de produits</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Bienvenue chez AMMU-NATION <?= $username ?></title>
+    <link rel="stylesheet" href="styleindex.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Bienvenue sur notre boutique en ligne</h1>
+        <h1>Bienvenue chez AMMU-NATION <?= $username ?></h1>
         <nav>
             <a href="cart.php">Mon panier</a>
             <a href="logout.php">Déconnexion</a>
