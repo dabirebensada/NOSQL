@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 require 'db_connect.php';
 
@@ -68,7 +68,7 @@ $products = $productsCollection->find();
                         class="add-to-cart" 
                         data-id="<?= (string)$product['_id'] ?>"
                         <?= $product['stock'] < 1 ? 'disabled' : '' ?>>
-                        Ajouter au panier
+                        <?= $product['stock'] < 1 ? 'Rupture de stock' : 'Ajouter au panier' ?>
                     </button>
                 </div>
             <?php endforeach; ?>
@@ -76,7 +76,7 @@ $products = $productsCollection->find();
     </main>
 
     <footer>
-        <p>&copy; 2024 Boutique en ligne. Tous droits réservés.</p>
+        <p>&copy; 2024 Online AMMU-NATION. All rights reserved.</p>
     </footer>
 
     <script>
@@ -90,12 +90,16 @@ $products = $productsCollection->find();
                     type: "POST",
                     data: { product_id: productId },
                     success: function(response) {
-                        const data = JSON.parse(response);
-                        if (data.success) {
-                            $(`#stock-${productId}`).text("Stock : " + data.new_stock);
-                            alert("Produit ajouté au panier avec succès !");
-                        } else {
-                            alert("Erreur : " + data.message);
+                        try {
+                            const data = JSON.parse(response);
+                            if (data.success) {
+                                $(`#stock-${productId}`).text("Stock : " + data.new_stock);
+                                alert("Produit ajouté au panier avec succès !");
+                            } else {
+                                alert("Erreur : " + data.message);
+                            }
+                        } catch (e) {
+                            alert("Une erreur s'est produite lors du traitement de la réponse.");
                         }
                     },
                     error: function() {
