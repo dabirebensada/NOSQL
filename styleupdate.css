@@ -20,7 +20,7 @@ form {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: rgba(48, 46, 46, 0.8); /* Fond légèrement transparent */
+    background-color: rgba(48, 46, 46, 0.8); 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
@@ -31,7 +31,7 @@ form div {
 
 label {
     font-weight: bold;
-    color: #333;
+    color: #f6f2f2;
     display: block;
     margin-bottom: 5px;
 }
@@ -43,10 +43,10 @@ textarea {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.2); /* Bordure légère pour être visible */
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.5); /* Fond transparent avec une légère couleur blanche */
-    color: #333; /* Texte visible */
+    background-color: rgba(255, 255, 255, 0.5); 
+    color: #333; 
     box-sizing: border-box;
 }
 
