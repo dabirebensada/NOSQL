@@ -1,0 +1,1 @@
+{"version":1,"defects":[],"times":{"ApplicationTest::testDatabaseConnection":0.018,"ApplicationTest::testProductsExist":0.292,"ApplicationTest::testAddToCart":0.01,"ApplicationTest::testRemoveFromCart":0.018,"AdminProductTest::testAdminLogin":0.522,"AdminProductTest::testAddProduct":0.003,"AdminProductTest::testUpdateProduct":0.005,"AdminProductTest::testDeleteProduct":0.013}}
