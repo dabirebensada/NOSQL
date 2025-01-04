@@ -8,15 +8,15 @@ class AdminProductTest extends TestCase
 
     protected function setUp(): void
     {
-        // Initialiser la connexion à la base de données
+        // connexion à la base de données
         $this->db = getMongoDBConnection();
     }
 
-    // Test : L'administrateur peut se connecter
+    // Test : L'administrateur peut se connecter si 
     public function testAdminLogin()
     {
         $adminUsername = "admin";
-        $adminPassword = "azerty123"; // Remplacez par un mot de passe fictif ou haché
+        $adminPassword = "azerty123"; 
         $adminsCollection = $this->db->users;
 
         $adminsCollection->insertOne([

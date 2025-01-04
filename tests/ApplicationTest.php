@@ -8,7 +8,7 @@ class ApplicationTest extends TestCase
 
     protected function setUp(): void
     {
-        // Initialiser la connexion à la base de données
+        // connexion à la base de données
         $this->db = getMongoDBConnection();
     }
 
